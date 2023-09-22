@@ -965,17 +965,18 @@ class VariantSelects extends HTMLElement {
     this.updatePickupAvailability();
     this.removeErrorMessage();
     this.updateVariantStatuses();
+console.log(this.currentVariant);
 
-if (this.currentVariant.option2 == 'Unselected') {
-  const buttonsToDisable = document.querySelectorAll('.product-form__buttons button');
-  buttonsToDisable.disabled = true;
-  return; 
-}
     if (!this.currentVariant) {
       this.toggleAddButton(true, '', true);
       this.setUnavailable();
     } else {
       this.updateMedia();
+      if (this.currentVariant.option2 === 'Unselected') {
+        const buttonsToDisable = document.querySelectorAll('.product-form__buttons button');
+        buttonsToDisable.disabled = true;
+        return
+      }
       this.updateURL();
       this.updateVariantInput();
       this.renderProductInfo();
