@@ -168,12 +168,20 @@
               const selectElements = document.querySelectorAll('.abslte-cstm-select');
               const buttonsToDisable = document.getElementsByClassName('custom-unselect-btn');
 
+
+              function checkAndDisableButton() {
+                const selectedValue = selectElements[0].value;
+                if (selectedValue === 'Unselected') {
+                  buttonsToDisable[0].disabled = true;
+                  return;
+
               // Function to check and disable the button
               function checkAndDisableButton() {
                 const selectedValue = selectElements[0].value;
 
                 if (selectedValue === 'Unselected') {
                   buttonsToDisable[0].disabled = true;
+ return;
 
                 } else {
                   buttonsToDisable[0].disabled = false;
