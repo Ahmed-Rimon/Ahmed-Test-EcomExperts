@@ -1598,3 +1598,94 @@ a.product__text {
     border: none;
   }
 }
+
+/* Custom css */
+.product-swatch__input {
+  flex: 0 0 100%;
+  padding: 0;
+  margin: 0 0 1.2rem 0;
+  max-width: 44rem;
+  min-width: fit-content;
+  border: none;
+}
+
+fieldset.product-swatch__input .form__label {
+    margin-bottom: 0.2rem;
+}
+
+.product-swatch__input .form__label {
+    padding-left: 0;
+}
+
+.product-swatch__input input[type=radio] {
+    clip: rect(0,0,0,0);
+    overflow: hidden;
+    position: absolute;
+    height: 1px;
+    width: 1px;
+}
+
+.product-swatch__input input[type=radio]+label {
+    border: var(--variant-pills-border-width) solid rgba(var(--color-foreground),var(--variant-pills-border-opacity));
+    background-color: rgb(var(--color-background));
+    color: rgba(var(--color-foreground));
+    border-radius: var(--variant-pills-radius);
+    color: rgb(var(--color-foreground));
+    display: inline-block;
+    margin: 0.7rem 0.5rem 0.2rem 0;
+    padding: 1rem 2rem;
+    font-size: 1.4rem;
+    letter-spacing: .1rem;
+    line-height: 1;
+    text-align: center;
+    transition: border var(--duration-short) ease;
+    cursor: pointer;
+    position: relative;
+}
+
+.product-swatch__input input[type=radio]+label:before {
+    content: "";
+    position: absolute;
+    top: calc(var(--variant-pills-border-width) * -1);
+    right: calc(var(--variant-pills-border-width) * -1);
+    bottom: calc(var(--variant-pills-border-width) * -1);
+    left: calc(var(--variant-pills-border-width) * -1);
+    z-index: -1;
+    border-radius: var(--variant-pills-radius);
+    box-shadow: var(--variant-pills-shadow-horizontal-offset) var(--variant-pills-shadow-vertical-offset) var(--variant-pills-shadow-blur-radius) rgba(var(--color-shadow),var(--variant-pills-shadow-opacity));
+}
+
+.product-swatch__input input[type=radio]:checked+label {
+    background-color: rgb(var(--color-foreground));
+    color: rgb(var(--color-background));
+}
+
+.abslte-cstm-input-hide {
+  display: none;
+}
+
+.product-swatch__input input[type=radio]+label.color-swatch-option-has-image {
+    position: relative;
+    width: 55px;
+    height: 55px;
+    border: 0;
+    color: transparent;
+    user-select: none;
+}
+
+.product-swatch__input input[type=radio]+label.color-swatch-option-has-image img {
+    display: block;
+    position: absolute;
+    top: 2.5px;
+    left: 2.5px;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 100%;
+}
+
+.product-swatch__input.abslte-cstm-input > div {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}

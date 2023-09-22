@@ -28,6 +28,7 @@
 {%- endstyle -%}
 
 <div class="section-{{ section.id }}-padding">
+  
   {%- paginate collection.products by section.settings.products_per_page -%}
     {% comment %} Sort is the first tabbable element when filter type is vertical {% endcomment %}
     {%- if section.settings.enable_sorting and section.settings.filter_type == 'vertical' -%}
@@ -159,6 +160,16 @@
                 {%- if forloop.index > 2 -%}
                   {%- assign lazy_load = true -%}
                 {%- endif -%}
+
+
+                {% assign hasOnlyAsBundleTag = false %}
+  {% for tag in product.tags %}
+    {% if tag == 'only_as_bundle' %}
+      {% assign hasOnlyAsBundleTag = true %}
+    {% endif %}
+  {% endfor %}
+  
+  {% unless hasOnlyAsBundleTag %}
                 <li
                   class="grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                   {% if settings.animations_reveal_on_scroll %}
@@ -178,6 +189,7 @@
                     section_id: section.id
                   %}
                 </li>
+              {% endunless %}
               {%- endfor -%}
             </ul>
 
