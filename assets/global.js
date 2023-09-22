@@ -966,16 +966,16 @@ class VariantSelects extends HTMLElement {
     this.removeErrorMessage();
     this.updateVariantStatuses();
 
-if (this.currentVariant.option2 == 'Unselected') {
-  const buttonsToDisable = document.querySelectorAll('.product-form__buttons button');
-  buttonsToDisable.disabled = true;
-  return; 
-}
     if (!this.currentVariant) {
       this.toggleAddButton(true, '', true);
       this.setUnavailable();
     } else {
       this.updateMedia();
+      if (this.currentVariant.option2 === 'Unselected') {
+        const buttonsToDisable = document.querySelectorAll('.product-form__buttons button');
+        buttonsToDisable.disabled = true;
+        return
+      }
       this.updateURL();
       this.updateVariantInput();
       this.renderProductInfo();
