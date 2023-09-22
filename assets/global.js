@@ -1041,6 +1041,8 @@ class VariantSelects extends HTMLElement {
       const availableOptionInputsValue = selectedOptionOneVariants
         .filter((variant) => variant.available && variant[`option${index}`] === previousOptionSelected)
         .map((variantOption) => variantOption[`option${index + 1}`]);
+
+        console.log('wd',availableOptionInputsValue);
       this.setInputAvailability(optionInputs, availableOptionInputsValue);
     });
   }
@@ -1210,6 +1212,7 @@ class VariantRadios extends VariantSelects {
 
   updateOptions() {
     const fieldsets = Array.from(this.querySelectorAll('fieldset'));
+    console.log('object',fieldsets);
     this.options = fieldsets.map((fieldset) => {
       return Array.from(fieldset.querySelectorAll('input')).find((radio) => radio.checked).value;
     });
