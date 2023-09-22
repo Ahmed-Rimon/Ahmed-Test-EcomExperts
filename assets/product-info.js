@@ -92,9 +92,9 @@ if (!customElements.get("product-info")) {
             })
             .then((responseData) => {
               if (responseData.status === "success") {
-                console.log("Product added to cart");
+                // console.log("Product added to cart");
               } else {
-                console.error("Error adding product to cart");
+                // console.error("Error adding product to cart");
               }
             })
             .catch((error) => {

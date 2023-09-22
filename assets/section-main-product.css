@@ -1666,8 +1666,8 @@ fieldset.product-swatch__input .form__label {
 
 .product-swatch__input input[type=radio]+label.color-swatch-option-has-image {
     position: relative;
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 55px;
     border: 0;
     color: transparent;
     user-select: none;
@@ -1676,8 +1676,8 @@ fieldset.product-swatch__input .form__label {
 .product-swatch__input input[type=radio]+label.color-swatch-option-has-image img {
     display: block;
     position: absolute;
-    top: 5px;
-    left: 5px;
+    top: 2.5px;
+    left: 2.5px;
     width: 50px;
     height: 50px;
     object-fit: cover;
