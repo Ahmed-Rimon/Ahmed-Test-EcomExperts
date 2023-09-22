@@ -61,6 +61,15 @@
     >
   {%- endif -%}
 
+  <script>
+    const url = window.location.href;
+    let result = url;
+    if (url.includes('variant=')) {
+      result = url.slice(0, url.indexOf('?'));
+      window.location.href = result;
+    }
+  </script>
+
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
 
   <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
@@ -824,9 +833,13 @@
             {
               "value": "button",
               "label": "t:sections.main-product.blocks.variant_picker.settings.picker_type.options__2.label"
+            },
+            {
+              "value": "custom",
+              "label": "Custom"
             }
           ],
-          "default": "button",
+          "default": "custom",
           "label": "t:sections.main-product.blocks.variant_picker.settings.picker_type.label"
         }
       ]
