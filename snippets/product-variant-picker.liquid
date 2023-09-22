@@ -166,23 +166,15 @@
 
             document.addEventListener("DOMContentLoaded", (event) => {
               const selectElements = document.querySelectorAll('.abslte-cstm-select');
-              const buttonsToDisable = document.getElementsByClassName('custom-unselect-btn');
-
+              const buttonsToDisable = document.querySelectorAll('.product-form__buttons button');
 
               function checkAndDisableButton() {
                 const selectedValue = selectElements[0].value;
+
                 if (selectedValue === 'Unselected') {
+                  console.log('awdawd');
                   buttonsToDisable[0].disabled = true;
                   return;
-
-              // Function to check and disable the button
-              function checkAndDisableButton() {
-                const selectedValue = selectElements[0].value;
-
-                if (selectedValue === 'Unselected') {
-                  buttonsToDisable[0].disabled = true;
- return;
-
                 } else {
                   buttonsToDisable[0].disabled = false;
                 }
