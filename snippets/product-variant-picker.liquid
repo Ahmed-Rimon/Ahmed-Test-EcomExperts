@@ -170,20 +170,16 @@
 
               // Function to check and disable the button
               function checkAndDisableButton() {
-                const selectedValue = selectElements[0].value; // Assuming there's only one select element
+                const selectedValue = selectElements[0].value;
 
                 if (selectedValue === 'Unselected') {
-                  buttonsToDisable[0].disabled = true; // Assuming there's only one button to disable
-                  return;
+                  buttonsToDisable[0].disabled = true;
+
                 } else {
                   buttonsToDisable[0].disabled = false;
                 }
               }
-
-              // Call the function initially on page load
               checkAndDisableButton();
-
-              // Add a change event listener to the select element
               selectElements[0].addEventListener("change", () => {
                 checkAndDisableButton();
               });
