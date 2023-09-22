@@ -42,7 +42,7 @@
           <div class="select">
             <select
               id="Option-{{ section.id }}-{{ forloop.index0 }}"
-              class="select__select"
+              class="select__select "
               name="options[{{ option.name | escape }}]"
               form="{{ product_form_id }}">
               {% render 'product-variant-options', product: product, option: option, block: block %}
@@ -94,17 +94,19 @@
                endfor
             -%}
 
-                {% assign color_option = value %}
+                {% assign color_option = value | downcase %}
                 {% assign variant_image = false %}
                 {% for variant in product.variants %}
-                  {% if variant.title contains color_option %}
+                  {% assign variant_title = variant.title | downcase %}
+                  {% if variant_title contains color_option %}
                     {% assign variant_image = variant.image %}
                     {% break %}
                   {% endif %}
                 {% endfor %}
                 {% unless variant_image %}
                   {% for image in product.images %}
-                    {% if image.alt contains color_option %}
+                    {% assign image_alt = image.alt | downcase %}
+                    {% if image_alt contains color_option %}
                       {% assign variant_image = image %}
                       {% break %}
                     {% endif %}
@@ -137,23 +139,52 @@
             <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
               {{ option.name }}
             </label>
-            <div class="select">
+            <div class="select wawdawdwd">
               <select
                 id="Option-{{ section.id }}-{{ forloop.index0 }}"
                 class="select__select"
                 name="options[{{ option.name | escape }}]"
                 form="{{ product_form_id }}">
+                <option value="">select</option>
                 {% render 'product-variant-options', product: product, option: option, block: block %}
               </select>
               {% render 'icon-caret' %}
             </div>
           </div>
           <script>
+
+
             document.addEventListener("DOMContentLoaded", (event) => {
               document.querySelectorAll('.abslte-cstm-input input[type=radio]').forEach((element) => {
                 element.addEventListener("change", (event) => {
                   document.querySelector('.abslte-cstm-input-hide select').value = event.target.value;
+                  console.log(event.target.value);
                 });
+              });
+            });
+
+            document.addEventListener("DOMContentLoaded", (event) => {
+              const selectElements = document.querySelectorAll('.abslte-cstm-select');
+              const buttonsToDisable = document.getElementsByClassName('custom-unselect-btn');
+
+              // Function to check and disable the button
+              function checkAndDisableButton() {
+                const selectedValue = selectElements[0].value; // Assuming there's only one select element
+
+                if (selectedValue === 'Unselected') {
+                  buttonsToDisable[0].disabled = true; // Assuming there's only one button to disable
+                  return;
+                } else {
+                  buttonsToDisable[0].disabled = false;
+                }
+              }
+
+              // Call the function initially on page load
+              checkAndDisableButton();
+
+              // Add a change event listener to the select element
+              selectElements[0].addEventListener("change", () => {
+                checkAndDisableButton();
               });
             });
           </script>
@@ -165,7 +196,7 @@
             <div class="select">
               <select
                 id="Option-{{ section.id }}-{{ forloop.index0 }}"
-                class="select__select"
+                class="select__select  abslte-cstm-select"
                 name="options[{{ option.name | escape }}]"
                 form="{{ product_form_id }}">
                 {% render 'product-variant-options', product: product, option: option, block: block %}
@@ -192,7 +223,7 @@
       <select
         name="id"
         id="Variants-{{ section.id }}"
-        class="select__select"
+        class="select__select "
         form="{{ product_form_id }}">
         {%- for variant in product.variants -%}
           <option {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %}{% if variant.available == false %}disabled{% endif %} value="{{ variant.id }}">

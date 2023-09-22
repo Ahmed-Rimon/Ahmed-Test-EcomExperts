@@ -966,6 +966,11 @@ class VariantSelects extends HTMLElement {
     this.removeErrorMessage();
     this.updateVariantStatuses();
 
+if (this.currentVariant.option2 == 'Unselected') {
+  const buttonsToDisable = document.querySelectorAll('.product-form__buttons button');
+  buttonsToDisable.disabled = true;
+  return; 
+}
     if (!this.currentVariant) {
       this.toggleAddButton(true, '', true);
       this.setUnavailable();
@@ -1042,7 +1047,21 @@ class VariantSelects extends HTMLElement {
         .filter((variant) => variant.available && variant[`option${index}`] === previousOptionSelected)
         .map((variantOption) => variantOption[`option${index + 1}`]);
 
-        console.log('wd',availableOptionInputsValue);
+        console.log('wd',optionInputs);
+        // console.log('wd',previousOptionSelected);
+        // console.log('wd',availableOptionInputsValue);
+        // const buttonsToToggle = document.querySelectorAll('.product-form__submit');
+        // if (availableOptionInputsValue == 'Unselected') { // Disable the buttons and add a class
+        //   buttonsToToggle.forEach((button) => {
+        //     button.classList.add('disabled-button'); // Add your custom class name here
+        //     button.disabled = true;
+        //   });
+        // } else { // Enable the buttons and remove the class
+        //   buttonsToToggle.forEach((button) => {
+        //     button.disabled = false;
+        //     button.classList.remove('disabled-button'); // Remove your custom class name here
+        //   });
+        // }
       this.setInputAvailability(optionInputs, availableOptionInputsValue);
     });
   }

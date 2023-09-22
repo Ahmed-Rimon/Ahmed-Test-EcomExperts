@@ -151,7 +151,6 @@ class CartItems extends HTMLElement {
 
   async updateQuantity(line, quantity, name, variantId) {
     this.enableLoading(line);
-    console.log(" dawdawdaw dada wd");
     const body = JSON.stringify({
       line,
       quantity,
