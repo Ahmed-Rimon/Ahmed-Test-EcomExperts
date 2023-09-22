@@ -950,6 +950,7 @@ class SlideshowComponent extends SliderComponent {
   }
 }
 
+
 customElements.define('slideshow-component', SlideshowComponent);
 
 class VariantSelects extends HTMLElement {
